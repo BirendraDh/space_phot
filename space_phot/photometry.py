@@ -66,7 +66,7 @@ def loglike(parameters,psf_models,wcs_list,vparam_names,xs,ys,fit_bkg,fluxes,flu
             sky_location = astropy.coordinates.SkyCoord(parameters[vparam_names.index('ra')],
                                                         parameters[vparam_names.index('dec')],
                                                         unit=astropy.units.deg)
-            y,x = astropy.wcs.utils.skycoord_to_pixel(sky_location,wcs_list[i])
+            x,y = astropy.wcs.utils.skycoord_to_pixel(sky_location,wcs_list[i])
             psf_models[i].x_0 = x
             psf_models[i].y_0 = y
         elif fit_pixel:
