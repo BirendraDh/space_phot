@@ -393,7 +393,7 @@ class observation():
                     sky_location = astropy.coordinates.SkyCoord(parameters[vparam_names.index('ra')],
                                                                 parameters[vparam_names.index('dec')],
                                                                 unit=astropy.units.deg)
-                    y,x = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
+                    x,y = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
                     self.psf_model_list[i].x_0 = x
                     self.psf_model_list[i].y_0 = y
                 elif fit_pixel:
@@ -493,7 +493,7 @@ class observation():
                 sky_location = astropy.coordinates.SkyCoord(res.best[vparam_names.index('ra')],
                                                             res.best[vparam_names.index('dec')],
                                                             unit=astropy.units.deg)
-                y,x = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
+                x,y = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
                 self.psf_model_list[i].x_0 = x
                 self.psf_model_list[i].y_0 = y
             elif fit_pixel:
