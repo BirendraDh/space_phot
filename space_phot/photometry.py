@@ -805,7 +805,7 @@ class observation3(observation):
         self.psf_model_list = [psf_model]
 
         if xy_position is None:
-            yi,xi = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs)
+            xi,yi = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs)
         else:
             xi,yi = xy_position
         xi+=xshift
@@ -1374,7 +1374,7 @@ class observation3(observation):
         temp = astropy.io.fits.open(self.fname)
         for j in range(len(plant_locations)):
             if isinstance(plant_locations[j],astropy.coordinates.SkyCoord):
-                y,x = astropy.wcs.utils.skycoord_to_pixel(plant_locations[j],self.wcs)
+                x,y = astropy.wcs.utils.skycoord_to_pixel(plant_locations[j],self.wcs)
                 ra = plant_locations[j].ra.value
                 dec = plant_locations[j].dec.value
             else:
@@ -1560,7 +1560,7 @@ class observation2(observation):
             #    temp['ERR',1].data = np.ones(temp['SCI',1].data.shape)
             for j in range(len(plant_locations)):
                 if isinstance(plant_locations[j],astropy.coordinates.SkyCoord):
-                    y,x = astropy.wcs.utils.skycoord_to_pixel(plant_locations[j],self.wcs_list[i])
+                    x,y = astropy.wcs.utils.skycoord_to_pixel(plant_locations[j],self.wcs_list[i])
                     ra = plant_locations[j].ra.value
                     dec = plant_locations[j].dec.value
                 else:
@@ -1987,7 +1987,7 @@ class observation2(observation):
             if len(xy_positions)==self.n_exposures:
                 xi,yi = xy_positions[im]
             else:
-                yi,xi = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[im])
+                xi,yi = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[im])
             
             xi+=xshift[im]
             yi+=yshift[im]
@@ -2178,7 +2178,7 @@ class observation2(observation):
                 sky_location = astropy.coordinates.SkyCoord(ra,
                                                             dec,
                                                             unit=astropy.units.deg)
-                y,x = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
+                x,y = astropy.wcs.utils.skycoord_to_pixel(sky_location,self.wcs_list[i])
                 #raise RuntimeError('Need to implement xy errors from wcs')
                 xerr = 0
                 yerr = 0
